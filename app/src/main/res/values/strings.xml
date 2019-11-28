@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">UngDungNhanTin</string>
+    <string name="title_register">Đăng ký tài khoản</string>
+    <string name="title_login">Chatbot Trí Tuệ Tự Tạo</string>
+    <string name="username">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="login_button">Đăng nhập</string>
+    <string name="register_button">Đăng ký</string>
+    <string name="login_fail">Đăng nhập thất bại</string>
+    <string name="username_password_fail">Nhập sai tài khoản mật khẩu</string>
+    <string name="repassword">Nhập lại mật khẩu</string>
+    <string name="displayname">Tên hiển thị</string>
+    <string name="age">Tuổi</string>
+    <string name="birthday">Ngày sinh</string>
+    <string name="pick_date_fail">Chọn sai ngày rồi</string>
+    <string name="weak_password">Mật khẩu không đủ mạnh</string>
+    <string name="invalid_email">Email không đúng định dạng</string>
+    <string name="exist_user">Người dùng đã tồn tại</string>
+</resources>

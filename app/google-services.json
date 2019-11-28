@@ -1,0 +1,159 @@
+{
+  "project_info": {
+    "project_number": "17038556481",
+    "firebase_url": "https://messenger-android-project.firebaseio.com",
+    "project_id": "messenger-android-project",
+    "storage_bucket": "messenger-android-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17038556481:android:457b65b3bfdb659f89b5c0",
+        "android_client_info": {
+          "package_name": "io.github.ndthien98.app01messenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17038556481-hk5va3hka5i2al98cmqusi6rs0f16djl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.ndthien98.app01messenger",
+            "certificate_hash": "38f6f1d5e3ec28ea781ad9a33dd4cc10e9122759"
+          }
+        },
+        {
+          "client_id": "17038556481-d63k4e2upelpo2661jhfm15qd4m44mdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn3aTyBT0rj-jjUIJCWWMO71WTLo2bdSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17038556481-d63k4e2upelpo2661jhfm15qd4m44mdj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17038556481:android:5c3201d7983ecc6a89b5c0",
+        "android_client_info": {
+          "package_name": "io.github.ndthien98.app02messenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17038556481-r43brh6studk617bpfdrgtg0br1a8pg0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.ndthien98.app02messenger",
+            "certificate_hash": "38f6f1d5e3ec28ea781ad9a33dd4cc10e9122759"
+          }
+        },
+        {
+          "client_id": "17038556481-d63k4e2upelpo2661jhfm15qd4m44mdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn3aTyBT0rj-jjUIJCWWMO71WTLo2bdSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17038556481-d63k4e2upelpo2661jhfm15qd4m44mdj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17038556481:android:9ce39f9417d8ad2389b5c0",
+        "android_client_info": {
+          "package_name": "io.github.ndthien98.messageapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17038556481-7uolf6tfevnnpi92uv31gmd0s9v9f8a7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.ndthien98.messageapp",
+            "certificate_hash": "38f6f1d5e3ec28ea781ad9a33dd4cc10e9122759"
+          }
+        },
+        {
+          "client_id": "17038556481-d63k4e2upelpo2661jhfm15qd4m44mdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn3aTyBT0rj-jjUIJCWWMO71WTLo2bdSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17038556481-d63k4e2upelpo2661jhfm15qd4m44mdj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17038556481:android:cd91422daf8fa79189b5c0",
+        "android_client_info": {
+          "package_name": "io.github.ndthien98.projectandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17038556481-mhdkpu4jmjfso91moaiu0ho64ru4om4d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.ndthien98.projectandroid",
+            "certificate_hash": "38f6f1d5e3ec28ea781ad9a33dd4cc10e9122759"
+          }
+        },
+        {
+          "client_id": "17038556481-d63k4e2upelpo2661jhfm15qd4m44mdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn3aTyBT0rj-jjUIJCWWMO71WTLo2bdSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17038556481-d63k4e2upelpo2661jhfm15qd4m44mdj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
