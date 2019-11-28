@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UngDungNhanTin</string>
+    <string name="app_name">Messenger</string>
     <string name="title_register">Đăng ký tài khoản</string>
     <string name="title_login">Chatbot Trí Tuệ Tự Tạo</string>
     <string name="username">Email</string>
