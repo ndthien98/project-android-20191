@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark1"
+    android:orientation="vertical"
+    android:theme="@style/MyDialogTheme"
+    tools:context="Activities.MainActivity">
+
+    <EditText
+        android:id="@+id/main_et_friend_email"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="@string/username"
+        android:textColor="@color/textColorLight" />
+
+</LinearLayout>

@@ -15,7 +15,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
+import Models.User;
 import io.github.ndthien98.app02messenger.R;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -77,9 +79,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                            User u = new User(user.getUid(), user.getEmail(), user.getEmail(), false, 20);
+                            FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid()).setValue(u).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()) {
+                                        Intent intent = new Intent(RegisterActivity.this, InfoActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(RegisterActivity.this, "Create user data failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                        etUsername.setText("");
+                                        etPassword.setText("");
+                                        etPassword2.setText("");
+                                    }
+                                }
+                            });
 
                         } else {
                             // If sign in fails, display a message to the user.

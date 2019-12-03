@@ -16,4 +16,14 @@
     <string name="weak_password">Mật khẩu không đủ mạnh</string>
     <string name="invalid_email">Email không đúng định dạng</string>
     <string name="exist_user">Người dùng đã tồn tại</string>
+    <string name="menu_logout">Đăng xuất</string>
+    <string name="menu_info">Thông tin cá nhân</string>
+    <string name="menu_add_friend">Thêm liên hệ</string>
+    <string name="info_accept">Lưu thay đổi</string>
+    <string name="info_deny">Huỷ thay đổi</string>
+    <string name="title_info">Thông tin cá nhân</string>
+    <string name="info_text_name">Họ tên</string>
+    <string name="info_text_gender">Giới tính</string>
+    <string name="info_text_age">Tuổi</string>
+    <string name="search_title">Tìm kiếm</string>
 </resources>

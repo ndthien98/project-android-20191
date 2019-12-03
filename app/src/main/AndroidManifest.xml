@@ -20,6 +20,7 @@
             android:theme="@style/MainTheme"/>
         <activity android:name="Activities.RegisterActivity"/>
         <activity android:name="Activities.LoginActivity"/>
+        <activity android:name="Activities.InfoActivity"/>
     </application>
 
 </manifest>

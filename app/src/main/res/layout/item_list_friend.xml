@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="@color/colorPrimaryDark1"
+    android:theme="@style/AppTheme">
+
+    <ImageView
+
+        android:id="@+id/item_friend_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/gradient_button_light"
+        android:text="A"
+        android:textColor="@color/textColorLight" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/item_friend_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="Friend name"
+            android:textColor="@color/textColorLight" />
+
+        <TextView
+            android:id="@+id/item_friend_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="Friend message"
+            android:textColor="@color/textColorDark" />
+    </LinearLayout>
+
+</LinearLayout>
