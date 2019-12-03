@@ -9,7 +9,7 @@ public class User {
     private String email;
     private boolean ismale;
     private int age;
-    private List<String> list_friends;
+    private List<String> list_friends = new ArrayList<>();
 
 
     public User() {
@@ -17,7 +17,9 @@ public class User {
     }
 
     public void addFriend(String email) {
-        list_friends.add(email);
+        if(list_friends==null) list_friends = new ArrayList<>();
+        if (!list_friends.contains(email))
+            list_friends.add(email);
     }
 
     public User(String uid, String name, String email, boolean ismale, int age) {

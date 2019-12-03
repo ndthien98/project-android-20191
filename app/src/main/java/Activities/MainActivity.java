@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 current = dataSnapshot.getValue(User.class);
                 listFriendAdapter.setListFriendData(current.getList_friends());
                 listFriendAdapter.notifyDataSetChanged();
-                for (String name:current.getList_friends()){
-                    Log.d(TAG, "onDataChange: "+name);
+                for (String name : current.getList_friends()) {
+                    Log.d(TAG, "onDataChange: " + name);
                 }
 
             }
@@ -73,7 +73,11 @@ public class MainActivity extends AppCompatActivity {
         list_friend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, listFriendAdapter.getItem(position) + "", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, MessageActivity.class);
+                intent.putExtra("send", current.getEmail());
+                intent.putExtra("recv", listFriendAdapter.getItem(position).toString());
+                startActivity(intent);
+//                Toast.makeText(MainActivity.this, listFriendAdapter.getItem(position) + "", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -121,16 +125,40 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(final DialogInterface dialog, int which) {
                         if (current != null) {
-                            String email = friendemail.getText().toString().trim();
-                            if (email.contains("@") && email.length() > 4) {
-                                current.addFriend(friendemail.getText().toString().trim());
-                                dbRef.child("users").child(current.getUid()).setValue(current).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            final String email = friendemail.getText().toString().trim();
+                            if (email.contains("@") && email.length() > 4 && !email.equalsIgnoreCase(current.getEmail())) {
+                                FirebaseDatabase.getInstance().getReference().child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        dialog.dismiss();
-                                        Toast.makeText(MainActivity.this, "Thêm liên hệ thành công", Toast.LENGTH_SHORT).show();
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        boolean flag = true;
+                                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                            if (data.child("email").getValue().toString().equalsIgnoreCase(email)) {
+                                                flag = false;
+                                                current.addFriend(friendemail.getText().toString().trim());
+                                                dbRef.child("users").child(current.getUid()).setValue(current).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        dialog.dismiss();
+                                                        Toast.makeText(MainActivity.this, "Thêm liên hệ thành công", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                                User u = data.getValue(User.class);
+                                                u.addFriend(current.getEmail());
+                                                FirebaseDatabase.getInstance().getReference().child("users").child(u.getUid())
+                                                        .setValue(u);
+                                            }
+
+                                        }
+                                        if (flag)
+                                            Toast.makeText(MainActivity.this, "Khong tim thay lien he " + email, Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
                                     }
                                 });
+
                             } else {
                                 Toast.makeText(MainActivity.this, R.string.invalid_email, Toast.LENGTH_SHORT).show();
                             }

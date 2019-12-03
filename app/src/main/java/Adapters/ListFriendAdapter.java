@@ -18,14 +18,12 @@ import java.util.List;
 import io.github.ndthien98.app02messenger.R;
 
 public class ListFriendAdapter extends BaseAdapter  {
-    ArrayList<String> listFriendData;
-    DatabaseReference listFriendRef;
+    ArrayList<String> listFriendData = new ArrayList<>();
     FirebaseUser mUser;
     Context context;
 
     public ListFriendAdapter(Context context) {
         this.context = context;
-        this.listFriendData = new ArrayList<>();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
