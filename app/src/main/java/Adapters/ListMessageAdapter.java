@@ -2,18 +2,22 @@ package Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 
@@ -21,35 +25,56 @@ import Models.Message;
 import io.github.ndthien98.app02messenger.R;
 
 public class ListMessageAdapter extends BaseAdapter {
+    private static final String TAG = "LIST_MESSAGE_ADAPTER";
     ArrayList<Message> listMessageData;
     String send_email;
     String recv_email;
     Context context;
     DatabaseReference dbref;
 
-    public ListMessageAdapter(String send_email, String recv_email, Context context) {
+    public ListMessageAdapter(String path, final Context context,final String send_email, final String recv_email) {
         this.context = context;
         this.send_email = send_email;
         this.recv_email = recv_email;
         listMessageData = new ArrayList<>();
-        dbref = FirebaseDatabase.getInstance().getReference().child("messages").getRef();
-        String path = send_email.compareToIgnoreCase(recv_email) > 0
-                ? send_email + recv_email :
-                recv_email + send_email;
-        path = path.replace("@", "");
-        Message sample1 = new Message(100);
-        sample1.setSender(send_email);
-        Message sample2 = new Message(10000);
-        sample2.setSender(send_email);
-        Message sample3 = new Message(100100);
-        sample3.setSender(recv_email);
-        Message sample4 = new Message(100100100);
-        sample4.setSender(recv_email);
-        listMessageData.add(sample1);
-        listMessageData.add(sample2);
-        listMessageData.add(sample3);
-        listMessageData.add(sample4);
-        dbref.child("messages").child(path).setValue(listMessageData);
+
+        dbref = FirebaseDatabase.getInstance().getReference().child("messages").child(path).getRef();
+//        listMessageData.add(new Message(1));
+//        dbref.setValue(listMessageData);
+
+        dbref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Message newMess = (Message) dataSnapshot.getValue(Message.class);
+                Log.d(TAG, "onChildAdded: " + newMess.getContent() + "string s: " + s);
+                listMessageData.add(newMess);
+                if (newMess.getSender().equalsIgnoreCase(recv_email)) {
+                    Toast.makeText(context, "Có tin nhắn mới", Toast.LENGTH_SHORT).show();
+                }
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 
@@ -96,8 +121,6 @@ public class ListMessageAdapter extends BaseAdapter {
             layout.setGravity(Gravity.START);
             background.setBackgroundResource(R.drawable.gradient_background_light);
         }
-
-
         return convertView;
     }
 
