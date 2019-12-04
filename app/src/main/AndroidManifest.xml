@@ -18,9 +18,12 @@
         </activity>
         <activity android:name="Activities.MainActivity"
             android:theme="@style/MainTheme"/>
-        <activity android:name="Activities.RegisterActivity"/>
-        <activity android:name="Activities.LoginActivity"/>
-        <activity android:name="Activities.InfoActivity"/>
+        <activity android:name="Activities.RegisterActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="Activities.LoginActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="Activities.InfoActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name="Activities.MessageActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/MainTheme"/>

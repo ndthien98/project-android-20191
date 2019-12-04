@@ -1,12 +1,19 @@
 package Adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -18,25 +25,31 @@ public class ListMessageAdapter extends BaseAdapter {
     String send_email;
     String recv_email;
     Context context;
+    DatabaseReference dbref;
 
     public ListMessageAdapter(String send_email, String recv_email, Context context) {
         this.context = context;
         this.send_email = send_email;
         this.recv_email = recv_email;
         listMessageData = new ArrayList<>();
-        Message sample1 = new Message();
+        dbref = FirebaseDatabase.getInstance().getReference().child("messages").getRef();
+        String path = send_email.compareToIgnoreCase(recv_email) > 0
+                ? send_email + recv_email :
+                recv_email + send_email;
+        path = path.replace("@", "");
+        Message sample1 = new Message(100);
         sample1.setSender(send_email);
-        Message sample2 = new Message();
+        Message sample2 = new Message(10000);
         sample2.setSender(send_email);
-        Message sample3 = new Message();
+        Message sample3 = new Message(100100);
         sample3.setSender(recv_email);
-        Message sample4 = new Message();
+        Message sample4 = new Message(100100100);
         sample4.setSender(recv_email);
         listMessageData.add(sample1);
         listMessageData.add(sample2);
         listMessageData.add(sample3);
         listMessageData.add(sample4);
-
+        dbref.child("messages").child(path).setValue(listMessageData);
     }
 
 
@@ -76,18 +89,13 @@ public class ListMessageAdapter extends BaseAdapter {
         tag.content.setText(listMessageData.get(position).getContent());
         LinearLayout layout = convertView.findViewById(R.id.item_message_layout);
         LinearLayout background = convertView.findViewById(R.id.item_message_background);
-        if (listMessageData.get(position).getSender().equalsIgnoreCase(send_email))
-        {
+        if (listMessageData.get(position).getSender().equalsIgnoreCase(send_email)) {
             layout.setGravity(Gravity.END);
             background.setBackgroundResource(R.drawable.gradient_background_gray);
-        }
-        else
-        {
+        } else {
             layout.setGravity(Gravity.START);
             background.setBackgroundResource(R.drawable.gradient_background_light);
         }
-
-
 
 
         return convertView;
