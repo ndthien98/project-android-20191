@@ -39,8 +39,7 @@ public class ListMessageAdapter extends BaseAdapter {
         listMessageData = new ArrayList<>();
 
         dbref = FirebaseDatabase.getInstance().getReference().child("messages").child(path).getRef();
-//        listMessageData.add(new Message(1));
-//        dbref.setValue(listMessageData);
+
 
         dbref.addChildEventListener(new ChildEventListener() {
             @Override

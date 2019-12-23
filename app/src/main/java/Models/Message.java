@@ -8,14 +8,6 @@ public class Message {
     String receiver;
     long timestamp;
 
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public String getContent() {
         return content;
     }
@@ -38,6 +30,14 @@ public class Message {
 
     public void setReceiver(String receiver) {
         this.receiver = receiver;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Message(int x) {

@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import io.github.ndthien98.app02messenger.R;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, OnCompleteListener<AuthResult> {
     private static final String TAG = "LOGIN_ACTIVITY";
     FirebaseAuth mAuth;
     EditText etUsername;
@@ -46,28 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.login_btn_login:
                 if (validateEmailPass()) {
-                    mAuth.signInWithEmailAndPassword(email, pass)
-                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        Log.d(TAG, "Đăng nhập thành công");
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
-
-                                    } else {
-                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                        etUsername.setText("");
-                                        etPassword.setText("");
-                                        Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                                Toast.LENGTH_SHORT).show();
-
-                                    }
-
-                                }
-                            });
+                    mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this, this);
                 }
 
                 break;
@@ -110,6 +89,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
+        }
+    }
+
+    @Override
+    public void onComplete(@NonNull Task<AuthResult> task) {
+        if (task.isSuccessful()) {
+            Log.d(TAG, "Đăng nhập thành công");
+            FirebaseUser user = mAuth.getCurrentUser();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+
+        } else {
+            Log.w(TAG, "signInWithEmail:failure", task.getException());
+            etUsername.setText("");
+            etPassword.setText("");
+            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                    Toast.LENGTH_SHORT).show();
+
         }
     }
 }

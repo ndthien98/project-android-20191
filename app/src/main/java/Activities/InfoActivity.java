@@ -1,7 +1,6 @@
 package Activities;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import Models.User;
 import io.github.ndthien98.app02messenger.R;
 
-public class InfoActivity extends AppCompatActivity implements View.OnClickListener {
+public class InfoActivity extends AppCompatActivity implements View.OnClickListener, ValueEventListener {
     TextView email;
     EditText name;
     EditText age;
@@ -49,36 +48,12 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         deny = findViewById(R.id.info_btn_deny);
         male = findViewById(R.id.info_rbtn_male);
         female = findViewById(R.id.info_rbtn_female);
-        getData();
+
+        FirebaseDatabase.getInstance().getReference().child("users").child(mUser.getUid()).addListenerForSingleValueEvent(this);
         accept.setOnClickListener(this);
         deny.setOnClickListener(this);
         male.setOnClickListener(this);
         female.setOnClickListener(this);
-    }
-
-    private void getData() {
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        dbRef.child("users").child(mUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                current = (User) dataSnapshot.getValue(User.class);
-                email.setText(current.getEmail());
-                name.setText(current.getName());
-                age.setText(current.getAge() + "");
-                if (current.isIsmale()) {
-                    male.setChecked(true);
-                    female.setChecked(false);
-                } else {
-                    male.setChecked(false);
-                    female.setChecked(true);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
     @Override
@@ -143,5 +118,25 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+    // pull data ve
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        current = (User) dataSnapshot.getValue(User.class);
+        email.setText(current.getEmail());
+        name.setText(current.getName());
+        age.setText(current.getAge() + "");
+        if (current.isIsmale()) {
+            male.setChecked(true);
+            female.setChecked(false);
+        } else {
+            male.setChecked(false);
+            female.setChecked(true);
+        }
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
     }
 }
