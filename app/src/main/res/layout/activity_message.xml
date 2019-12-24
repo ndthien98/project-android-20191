@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark1"
     android:orientation="vertical"
     android:theme="@style/MainTheme">
@@ -9,7 +9,7 @@
     <ListView
         android:id="@+id/message_list_message"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1" />
 
 
@@ -20,9 +20,13 @@
 
         <EditText
             android:id="@+id/message_et_input"
+            android:imeOptions="actionSend"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:hint="@string/nhap_tin_nhan"
+            android:inputType="textFilter|textMultiLine"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/message_btn_send"
